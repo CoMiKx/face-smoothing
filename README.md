@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/CoMiKx/face-smoothing.svg?branch=main)](https://travis-ci.com/CoMiKx/face-smoothing) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Build Status](https://travis-ci.com/5starkarma/face-smoothing.svg?branch=main)](https://travis-ci.com/5starkarma/face-smoothing) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 
 # Face Smoothing: Detection and Beautification
@@ -41,6 +41,7 @@ python3 infer.py --input 'path/to/input_file.jpg' (Input file - image, video, or
 - [X] Apply blurring on multiple faces
 - [X] Video inference
 - [X] Save bounding box to output
+- [X] Add camera to input type
 - [ ] Apply different blurring techniques/advanced algo using facial landmarks to blur only skin regions
 - [ ] Unit tests
 - [ ] Run time tests on units
