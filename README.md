@@ -1,11 +1,11 @@
-[![Build Status](https://travis-ci.com/5starkarma/face-smoothing.svg?branch=main)](https://travis-ci.com/5starkarma/face-smoothing) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Build Status](https://travis-ci.com/CoMiKx/face-smoothing.svg?branch=main)](https://travis-ci.com/CoMiKx/face-smoothing) [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 
 # Face Smoothing: Detection and Beautification
 
 Input Image             |  Output Image w/ Facial Smoothing
 :-------------------------:|:-------------------------:
-![alt text](https://github.com/5starkarma/face-smoothing/blob/main/data/images/hillary_clinton.jpg?raw=true "Input image")  |  ![alt text](https://github.com/5starkarma/face-smoothing/blob/main/data/output/output_0.jpg?raw=true "Output image")
+![alt text](https://github.com/CoMiKx/face-smoothing/blob/main/data/images/hillary_clinton.jpg?raw=true "Input image")  |  ![alt text](https://github.com/CoMiKx/face-smoothing/blob/main/data/output/output_0.jpg?raw=true "Output image")
 ---
 OpenCV implementation of facial smoothing. Facial detection is done using an pretrained TensorFlow face detection model. Facial smoothing is accomplished using the following steps:
 
@@ -18,7 +18,7 @@ OpenCV implementation of facial smoothing. Facial detection is done using an pre
 
 ## Install
 ```
-git clone https://github.com/5starkarma/face-smoothing.git
+git clone https://github.com/CoMiKx/face-smoothing.git
 cd face-smoothing
 ```
 ## Run
@@ -31,7 +31,7 @@ python3 infer.py --input 'path/to/input_file.jpg' (Input file - image, video, or
                  --show-detections (Saves bounding box detections to output)
 ```
 #### Example: --save-steps flag
-![alt text](https://github.com/5starkarma/face-smoothing/blob/main/data/output/combined_0.jpg?raw=true "Processing steps")
+![alt text](https://github.com/CoMiKx/face-smoothing/blob/main/data/output/combined_0.jpg?raw=true "Processing steps")
 
 ## TODO
 - [X] Finish documentation and cleanup functions
