@@ -102,7 +102,7 @@ def process_video(filename, args, cfg, net):
     # Add brackets and extension to filename
     output_path = create_video_output_path(output_dir, cfg)
     # Get height and width of 1st image
-    height, width, _  = check_img_size(images[0]).shape
+    height, width, _ = check_img_size(images[0]).shape
     # Create VideoWriter object
     video = cv2.VideoWriter(output_path, 
                             cv2.VideoWriter_fourcc(*'FMP4'), 
@@ -117,4 +117,61 @@ def process_video(filename, args, cfg, net):
         video.write(output_img)    
     # Release video writer object
     video.release()
+
+
+def process_camera(args, cfg, net):
+    """
+    Processes each frame individually.
+
+    Parameters
+    ----------
+    cfg : dict
+        Dictionary of configurations
+
+    net : Neural Network object
+        Pre-trained model ready for forward pass
+
+    Returns
+    -------
+    None. Just a video plyer
+    """
+    # Load the face detector
+    # face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+    # Start capturing video from the default camera
+    cap = cv2.VideoCapture(0)
+
+    # Loop over frames from the video stream
+    while True:
+        # Capture the next frame
+        ret, frame = cap.read()
+
+        # Convert the frame to grayscale for face detection
+        # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+        # Detect faces in the grayscale image
+        # faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+
+        # Apply bilateral filter to each face in the frame
+        # for (x, y, w, h) in faces:
+        #     face_roi = frame[y:y + h, x:x + w]
+        #     blurred = cv2.bilateralFilter(face_roi, 9, 75, 75)
+        #     frame[y:y + h, x:x + w] = blurred
+
+        # Process frames
+        img_steps = process_image(frame, cfg, net)
+        # Check for --show-detections flag
+        output_img = check_if_adding_bboxes(args, img_steps)
+
+        # Display the resulting frame
+        cv2.imshow('Face Smoothing', output_img)
+        # cv2.imshow('Face Smoothing', frame)
+
+        # Exit if the 'q' key is pressed
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    # Release the video capture and close the window
+    cap.release()
+    cv2.destroyAllWindows()
 

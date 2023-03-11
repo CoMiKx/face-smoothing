@@ -17,7 +17,8 @@ from utils.image import (load_image,
                          process_image,
                          check_if_adding_bboxes)
 from utils.video import (split_video,
-                         process_video)
+                         process_video,
+                         process_camera)
 from utils.types import (is_image,
                          is_video,
                          is_directory)
@@ -48,6 +49,9 @@ def parse_args():
     parser.add_argument('--save-steps', 
                         action='store_true',
                         help='Saves each step of the image.')
+    parser.add_argument('--camera',
+                        action='store_true',
+                        help='Use camera input')
     args = parser.parse_args()
     # assert args.image_shape is None or len(args.image_shape) == 2, \
     #     'You need to provide a 2-dimensional tuple as shape (H,W)'
@@ -66,8 +70,7 @@ def load_configs():
     configs : dict
         A dictionary containing the configs
     """
-    with open('/content/drive/My Drive/Colab Notebooks/face-smoothing'\
-               '/configs/configs.yaml', 'r') as file:
+    with open('./configs/configs.yaml', 'r') as file:
         return yaml.load(file, Loader=yaml.FullLoader)
 
 
@@ -84,6 +87,10 @@ def main(args):
     input_file = args.input
 
     try:
+        # If user use camera
+        if args.camera:
+            # Process video Camera
+            process_camera(args, cfg, net)
         # If file is a compatible video file
         if is_video(input_file):
             # Process video
@@ -120,7 +127,7 @@ def main(args):
                     img_steps = process_image(input_img, cfg, net)
                     # Save final image to specified output filename
                     out_filename = os.path.join(args.output, cfg['image']['output'])
-                     # Check for --show-detections flag
+                    # Check for --show-detections flag
                     output_img = check_if_adding_bboxes(args, img_steps)
                     # Save image
                     img_saved = save_image(out_filename, output_img)
